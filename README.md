@@ -20,23 +20,19 @@ filters plugin for OmegaT][okapi] to make OmegaT parse Markdown files.
 
 ## Directories and files
 
-* [`docs`](./docs): Markdown documents including notes and quizzes.
-  * [`en`](./docs/en): Source documents written in English.
-    * [`notes`](./docs/en/notes)
-      * `ChapterXX`: My notes about the concepts explained in Chapter XX of the
+- [`docs`](./docs): Markdown documents including notes and quizzes.
+  - [`en`](./docs/en): Source documents written in English.
+    - [`notes`](./docs/en/notes)
+      - `ChapterXX`: My notes about the concepts explained in Chapter XX of the
         text.
-    * [`quiz`](./docs/en/quiz)
-      * `chapterXX.md`: My additional quiz for Chapter XX of the text.
-  * [`ko`](./docs/ko): Korean translation of the source documents in the `en`
+    - [`quiz`](./docs/en/quiz)
+      - `chapterXX.md`: My additional quiz for Chapter XX of the text.
+  - [`ko`](./docs/ko): Korean translation of the source documents in the `en`
     directory. It has the same subdirectory structure as `en`.
 
-* [`TPIL`](./TPIL): My solutions to the exercises and questions. This directory
-  also contains Lean files providing examples of the concepts discussed in the
-  text.
-  * `ChapterXX`: Chapter XX of the text.
-    * `Question*`: Solutions to the question(s) of my quiz.
-    * `Exercise*`: Solutions to the exercise(s) in the chapter.
-  * [`Exam`](./TPIL/Exam): My additional examinations for the text.
+- [`TPIL`](./TPIL): My solutions to the exercises and questions.
+  - `ChapterXX`: Chapter XX of the text.
+    - `Question*`: Solutions to the question(s) of my quiz.
 
 ## Contributing
 
