@@ -58,13 +58,14 @@ def q04d : Bool -> Bool -> Bool := fun x => fun y => x || y
 
 ## Question 7
 \(a\) `Bool → Bool` 
-* 함수 타입으로, Bool 타입을 받아 Bool 타입을 반환하는 함수이다.
+* 함수 타입으로, Bool값을 받아 Bool값을 반환하는 함수이다.
 
 \(b\) `Bool × Bool`
 * Cartesian product 타입으로, 2개의 Bool값을 갖는 튜플이다.
 
 ## Question 8
-* 타입을 입력받아 타입을 반환하는 함수이므로 Type.id가 Nat을 받을 경우 Nat을 반환한다.
+* 유형을 입력받아 유형을 반환하는 함수이므로 Type.id가 Nat을 받을 경우 Nat을 반환한다.
+* Nat의 유형은 Type이므로, 정답은 Type이다.
 
 ## Question 9
 
@@ -77,12 +78,12 @@ Define a constant of each type listed below.
 
 
 ## Question 11
-* universe-polymorphic하지 않다. 8번의 함수는 타입을 입력받아 타입을 반환하는데, 입력받은 타입에 고정되어 있는 상태이기 때문이다.
+* universe-polymorphic하지 않다. 8번의 함수는 유형을 입력받아 유형을 반환하는데, 그 정의역과 공역 모두 고정된 유형 세계이기 때문이다.
 
 ## Question 12
 
 \(a\) `(Nat, Type 0)` 
-* universe-polymorphic하지 않다. Nat과 Type 0 둘 다 고정된 레벨을 갖기 때문이다.
+* universe-polymorphic하지 않다. Nat과 Type 0 둘 다 고정된 유형 세계에 속하기 때문이다.
   
 \(b\) `fun (f : Type 2) => (f -> f)`
 * universe-polymorphic하지 않다. f가 Type 2에 고정된 타입이어서 다른 유니버스 레벨에서 작동하지 않기 때문이다.
