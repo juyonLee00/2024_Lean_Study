@@ -71,10 +71,19 @@ def q04d : Bool -> Bool -> Bool := fun x => fun y => x || y
 Define a constant of each type listed below.
 
 \(a\) `(Nat, Type 0)` \
-\(b\) `fun (f : Type 2) => (f -> f)`
+\(b\) `fun (f : Type 2) => List f`
 
 ## Question 10
+```
+namespace Question10
 
+def f.{u, v, w} : Type u -> Type v -> Type w -> Type (max u v w) :=
+  fun (α : Type u) (β : Type v) (γ : Type w) => α × (β × γ)
+def g.{u, v, w} : Type u -> Type v -> Type w -> Type (max u v w) :=
+  fun (α : Type u) (β : Type v) (γ : Type w) => (α -> β) -> γ
+
+end Question10
+```
 
 ## Question 11
 * universe-polymorphic하지 않다. 8번의 함수는 타입을 입력받아 타입을 반환하는데, 입력받은 타입에 고정되어 있는 상태이기 때문이다.
@@ -84,8 +93,8 @@ Define a constant of each type listed below.
 \(a\) `(Nat, Type 0)` 
 * universe-polymorphic하지 않다. Nat과 Type 0 둘 다 고정된 레벨을 갖기 때문이다.
   
-\(b\) `fun (f : Type 2) => (f -> f)`
-* universe-polymorphic하지 않다. f가 Type 2에 고정된 타입이어서 다른 유니버스 레벨에서 작동하지 않기 때문이다.
+\(b\) `fun (f : Type 2) => List f`
+* universe-polymorphic하지 않다. 고정된 Type 2와 Type 3 사이에서만 동작하고, 함수는 Type 2에서 Type 3로 가는 것이기 때문이다.
 
 ## Question 13
 `-1`.
@@ -102,13 +111,9 @@ def q014 (n : Nat) : Bool :=
 * identity function이 아니다. identity function은 입력값을 그대로 반환해야 하는데 입력값과 상관없이 0을 반환하기 때문이다.
 
 ## Question 17
-
-Define the following function, replacing the `sorry` identifier with an actual
-expression *containing* the arguments `f`, `g`, and `s`.
-
 ```lean
 def q17 (f : List Char → Nat) (g : (List Char → Nat) → (String → Nat)) (s : String) : Nat :=
-  sorry
+  g f s
 ```
 
 ## Question 18
