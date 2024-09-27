@@ -129,28 +129,60 @@ def q20 (a b : Nat) : Nat :=
 ```
 
 ## Question 21
+* `foo`는 `a`의 타입이 고정되어 있어서 함수 `x`의 타입 체크를 통과한다. `bar`는 `a`의 타입을 받아서 인자로 전달한다. 그러나 함수 내 `x+2`는 `Nat`에만 적용이 가능한데 `a`는 제약 없는 임의의 타입이기 때문에 `a`의 타입이 `Nat`이 아닐 수도 있기 때문에 타입 체크를 통과하지 못한다.
 
 ## Question 22
+```
+def compose : (α β γ : Type) → (β → γ) → (α → β) → α → γ :=
+fun α β γ g f x => g (f x)
+
+def doTwice : (α : Type) → (α → α) → α → α :=
+fun α h x => h (h x)
+
+def doThrice : (α : Type) → (α → α) → α → α :=
+fun α h x => h (h (h x))
+```
 
 ## Question 23
 
+
 ## Question 24
+\(a\) `[0, 1, 2, 3]`\
+\(b\) `[true]`\
+\(c\) `["Lean", "4"]`
 
 ## Question 25
+\(a\) `True`\
+\(b\) `True`\
+\(c\) `False`\
+\(d\) `False`
 
 ## Question 26
+\(a\) `False`\
+(b\) `False`\
+\(c\) `False` 
 
 ## Question 27
+\(a\) `True`\
+\(b\) `False`\
+\(c\) `False`\
+\(d\) `False`\
+\(e\) `False`
 
 ## Question 28
+* `dependent function type`이다. 그 이유는 `β a`가 `a`에 의존하고, `β`의 타입이 `α`에 의존하기 때문이다.
 
 ## Question 29
+* `dependent product type`이다. 그 이유는 `β a`가 `a`에 의존하기 때문이다.
 
 ## Question 30
+* `Sigma type`이다. 그 이유는 `Σ (a : α), β a`에서 시그마 타입이라고 명시되어 있기 때문이다.
 
 ## Question 31
+* 같은 타입이다. 그 이유는 둘 다 첫 번째 요소의 타입이 `α`이고, 두 번째 요소의 타입이 첫 번째 요소에 의존하는 `β a`인 쌍을 나타낸다는 의미는 동일하기 때문이다.
 
 ## Question 32
+* `dependent function type`이 아니다. 그 이유는 리턴 타입이 `Prop`로 고정되어 있어 입력값 `α`에 의존하지 않기 때문이다.
 
 ## Question 33
 
