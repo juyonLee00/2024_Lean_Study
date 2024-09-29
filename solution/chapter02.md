@@ -145,7 +145,10 @@ fun α h x => h (h (h x))
 ```
 
 ## Question 23
-
+```
+def compose {α : Type} (g : List α → List α) (f : List α → List α) (x : List α) : List α :=
+  g (f x)
+```
 
 ## Question 24
 \(a\) `[0, 1, 2, 3]`\
@@ -186,14 +189,35 @@ fun α h x => h (h (h x))
 * `dependent function type`이 아니다. 그 이유는 리턴 타입이 `Prop`로 고정되어 있어 입력값 `α`에 의존하지 않기 때문이다.
 
 ## Question 33
+* `dependent product type`이 아니다. 그 이유는 `α`에 관계없이 `Prop`이 항상 명제이기 때문이다.
 
 ## Question 34
+```
+namespace Question34
+
+universe u v
+
+def f (α : Type u) (β : α → Type v) (a : α) (b : β a) : Σ (a : α), β a :=
+  ⟨a, b⟩
+
+end Question34
+```
 
 ## Question 35
+\(a\) `1`\
+\(b\) `-1`
 
 ## Question 36
+\(a\) `[]`, `List Nat`\
+\(b\) `[0, 1, 2, 3]`, `List Nat`
 
 ## Question 37
+\(a\) `@List.cons Nat 0 [1, 2, 3]`, `[0, 1, 2, 3]`\
+\(b\) `@List.append Nat [0, 1] [2, 3]`, `[0, 1, 2, 3]`\
+\(c\) `@List.cons String "Lean" ["4"]`, `["Lean", "4"]`\
+\(d\) `@List.append String ["Lean"] ["4"]`, `["Lean", "4"]`
 
 ## Question 38
-
+```
+def Id.map {α β : Type} (f : α → β) (x : α) : β := f x
+```
