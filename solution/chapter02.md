@@ -70,7 +70,7 @@ def q04d : Bool -> Bool -> Bool := fun x => fun y => x || y
 ## Question 9
 
 \(a\) `(Nat, Type 0)` \
-\(b\) `fun (f : Type 2) => f -> List f`
+\(b\) `fun (f : Type 2) => Type 2 -> List f`
 
 ## Question 10
 ```
