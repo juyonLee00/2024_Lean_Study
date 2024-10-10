@@ -128,7 +128,7 @@ def q20 (a b : Nat) : Nat :=
 ```
 
 ## Question 21
-* `foo`는 `a`의 타입이 고정되어 있어서 함수 `x`의 타입 체크를 통과한다. `bar`는 `a`의 타입을 받아서 인자로 전달한다. 그러나 함수 내 `x+2`는 `Nat`에만 적용이 가능한데 `a`는 제약 없는 임의의 타입이기 때문에 `a`의 타입이 `Nat`이 아닐 수도 있기 때문에 타입 체크를 통과하지 못한다.
+* `foo`는 `a`의 값이 `Nat`으로 정해져 있어서 함수 `fun x : a => x + 2`의 타입 체크(유형 확인)를 통과한다. `bar`의 정의에 나오는 함수 `fun a => fun x : a => x + 2`에서, `a`는 제약 없는 임의의 타입이기 때문에 `a`의 값이 `Nat`이 아닐 수도 있다. 이 때문에 `bar`의 정의는 타입 체크를 통과하지 못한다.
 
 ## Question 22
 ```
@@ -172,7 +172,7 @@ def compose {α : Type} (g : List α → List α) (f : List α → List α) (x :
 \(e\) `False`
 
 ## Question 28
-* `dependent function type`이다. 그 이유는 `β a`가 `a`에 의존하고, `β`의 타입이 `α`에 의존하기 때문이다.
+* `dependent function type`이다. 그 이유는 `β a`가 `a`에 의존하기 때문이다.
 
 ## Question 29
 * `dependent product type`이다. 그 이유는 `β a`가 `a`에 의존하기 때문이다.
@@ -187,7 +187,7 @@ def compose {α : Type} (g : List α → List α) (f : List α → List α) (x :
 * `dependent function type`이 아니다. 그 이유는 리턴 타입이 `Prop`로 고정되어 있어 입력값 `α`에 의존하지 않기 때문이다.
 
 ## Question 33
-* `dependent product type`이 아니다. 그 이유는 `α`에 관계없이 `Prop`이 항상 명제이기 때문이다.
+* `dependent product type`이 아니다. 그 이유는 `α`에 관계없이 `Prop`이 항상 명제 유형 세계이기 때문이다.
 
 ## Question 34
 ```
