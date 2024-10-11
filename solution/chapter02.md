@@ -92,7 +92,7 @@ end Question10
 \(a\) `(Nat, Type 0)` 
 * universe-polymorphic하지 않다. Nat과 Type 0 둘 다 고정된 유형 세계에 속하기 때문이다.
   
-\(b\) `fun (f : Type 2) => f -> List f`
+\(b\) `fun (f : Type 2) => Type 2 -> List f`
 * universe-polymorphic하지 않다. 고정된 Type 2와 Type 3 사이에서만 동작하고, 함수는 Type 2에서 Type 3로 가는 것이기 때문이다.
 
 ## Question 13
