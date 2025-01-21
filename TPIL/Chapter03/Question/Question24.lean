@@ -11,3 +11,8 @@ example : (((p → q) → p) → p) :=
       (fun hnp : ¬p =>
         h (fun hpq : (p → q) => (hnp.elim hpq (fun _ => q))))
 -/
+example : (((p → q) → p) → p) :=
+  fun h : (p → q) → p =>
+    byCases
+      (fun hp : p => hp) -- 다른 풀이: id
+      (fun hnp : ¬p => h (show p → q from sorry))
