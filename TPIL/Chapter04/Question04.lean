@@ -13,3 +13,9 @@ def goldbach_conjecture : Prop := ∀ n : Nat, even n ∧ 2 < n → ∃ a b : Na
 def Goldbach's_weak_conjecture : Prop := ∀ n : Nat, n > 5 ∧ ¬ even n → ∃ a b c : Nat, prime a ∧ prime b ∧ prime c ∧ n = a + b + c
 
 def Fermat's_last_theorem : Prop := ∀ n x y z : Nat, n ≥ 3 → x ^ n + y ^ n ≠ z ^ n
+
+/-- Bulhwi: please restate Fermat's Last Theorem. -/
+theorem not_flt : ¬Fermat's_last_theorem := by
+  intro h
+  have hne : 0 ^ 3 + 0 ^ 3 ≠ 0 ^ 3 := h 3 0 0 0 (Nat.le_refl 3)
+  simp at hne

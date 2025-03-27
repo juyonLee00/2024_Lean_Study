@@ -1,3 +1,5 @@
+set_option linter.unusedVariables false
+
 open Classical
 
 variable (α : Type) (p q : α → Prop)
