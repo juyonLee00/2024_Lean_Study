@@ -6,7 +6,7 @@ example : (∀ x, p x ∧ q x) ↔ (∀ x, p x) ∧ (∀ x, q x) := by
   simp
 
 example : (∀ x, p x → q x) → (∀ x, p x) → ∀ x, q x := by
-  rintro h₁ h₂ x
+  intro h₁ h₂ x
   exact h₁ x (h₂ x)
 
 example : (∀ x, p x) ∨ (∀ x, q x) → ∀ x, p x ∨ q x := by

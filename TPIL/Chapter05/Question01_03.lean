@@ -49,7 +49,7 @@ example : ¬ (p ∧ ¬p) := by
   exact hnp hp
 
 example : p ∧ ¬q → ¬(p → q) := by
-  rintro ⟨hp, hnq⟩ hpq
+  intro ⟨hp, hnq⟩ hpq
   exact hnq (hpq hp)
 
 example : ¬p → (p → q) := by
@@ -71,5 +71,5 @@ example : p ∧ False ↔ False := by
   simp
 
 example : (p → q) → (¬q → ¬p) := by
-  rintro hpq hnq hp
+  intro hpq hnq hp
   exact hnq (hpq hp)
