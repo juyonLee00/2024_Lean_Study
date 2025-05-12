@@ -7,6 +7,9 @@ example : p ∧ q ↔ q ∧ p := by
 example : p ∨ q ↔ q ∨ p := by
   rw [or_comm]
 
+section
+
+variable (r : Prop)
 
 -- associativity of ∧ and ∨
 example : (p ∧ q) ∧ r ↔ p ∧ (q ∧ r) := by
@@ -27,8 +30,11 @@ example : p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r) := by
 -- other properties
 example : (p → q → r) ↔ (p ∧ q → r) := by
   rw [and_imp]
+
 example : ((p ∨ q) → r) ↔ (p → r) ∧ (q → r) := by
   rw [or_imp]
+
+end
 
 example : ¬ (p ∨ q) ↔ ¬p ∧ ¬q := by
   simp
