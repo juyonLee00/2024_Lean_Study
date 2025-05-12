@@ -19,6 +19,10 @@ example : (∀ x, p x) ∨ (∀ x, q x) → ∀ x, p x ∨ q x := by
 example : (∀ x, p x ∧ q x) ↔ (∀ x, p x) ∧ (∀ x, q x) := by
   rw [forall_and]
 
+section
+
+variable (r : Prop)
+
 example : (∀ x, p x ∨ r) ↔ (∀ x, p x) ∨ r := by
   apply Iff.intro
   · intro h; by_cases hr : r
@@ -35,5 +39,6 @@ example : (∀ x, r → p x) ↔ (r → ∀ x, p x) := by
   · intro h hr x; exact h x hr
   · intro h x hr; exact h hr x
 
+end
 
 -- 3.
