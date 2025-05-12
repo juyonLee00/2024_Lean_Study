@@ -3,7 +3,7 @@ open Classical
 
 -- 1.
 example : (∀ x, p x ∧ q x) ↔ (∀ x, p x) ∧ (∀ x, q x) := by
-  simp
+  simp -- simp made no progress
 
 example : (∀ x, p x → q x) → (∀ x, p x) → ∀ x, q x := by
   intro h₁ h₂ x
