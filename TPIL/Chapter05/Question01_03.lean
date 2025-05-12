@@ -21,10 +21,10 @@ example : (p ∨ q) ∨ r ↔ p ∨ (q ∨ r) := by
 
 -- distributivity
 example : p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r) := by
-  simp
+  simp -- simp made no progress
 
 example : p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r) := by
-  simp
+  simp -- simp made no progress
 
 
 -- other properties
