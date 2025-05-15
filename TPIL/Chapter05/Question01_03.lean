@@ -7,6 +7,9 @@ example : p ∧ q ↔ q ∧ p := by
 example : p ∨ q ↔ q ∨ p := by
   rw [or_comm]
 
+section
+
+variable (r : Prop)
 
 -- associativity of ∧ and ∨
 example : (p ∧ q) ∧ r ↔ p ∧ (q ∧ r) := by
@@ -18,17 +21,20 @@ example : (p ∨ q) ∨ r ↔ p ∨ (q ∨ r) := by
 
 -- distributivity
 example : p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r) := by
-  simp
+  simp -- simp made no progress
 
 example : p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r) := by
-  simp
+  simp -- simp made no progress
 
 
 -- other properties
 example : (p → q → r) ↔ (p ∧ q → r) := by
   rw [and_imp]
+
 example : ((p ∨ q) → r) ↔ (p → r) ∧ (q → r) := by
   rw [or_imp]
+
+end
 
 example : ¬ (p ∨ q) ↔ ¬p ∧ ¬q := by
   simp
@@ -43,7 +49,7 @@ example : ¬ (p ∧ ¬p) := by
   exact hnp hp
 
 example : p ∧ ¬q → ¬(p → q) := by
-  rintro ⟨hp, hnq⟩ hpq
+  intro ⟨hp, hnq⟩ hpq
   exact hnq (hpq hp)
 
 example : ¬p → (p → q) := by
@@ -65,5 +71,5 @@ example : p ∧ False ↔ False := by
   simp
 
 example : (p → q) → (¬q → ¬p) := by
-  rintro hpq hnq hp
+  intro hpq hnq hp
   exact hnq (hpq hp)

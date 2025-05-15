@@ -3,10 +3,10 @@ open Classical
 
 -- 1.
 example : (∀ x, p x ∧ q x) ↔ (∀ x, p x) ∧ (∀ x, q x) := by
-  simp
+  simp -- simp made no progress
 
 example : (∀ x, p x → q x) → (∀ x, p x) → ∀ x, q x := by
-  rintro h₁ h₂ x
+  intro h₁ h₂ x
   exact h₁ x (h₂ x)
 
 example : (∀ x, p x) ∨ (∀ x, q x) → ∀ x, p x ∨ q x := by
@@ -18,6 +18,10 @@ example : (∀ x, p x) ∨ (∀ x, q x) → ∀ x, p x ∨ q x := by
 -- 2.
 example : (∀ x, p x ∧ q x) ↔ (∀ x, p x) ∧ (∀ x, q x) := by
   rw [forall_and]
+
+section
+
+variable (r : Prop)
 
 example : (∀ x, p x ∨ r) ↔ (∀ x, p x) ∨ r := by
   apply Iff.intro
@@ -35,5 +39,6 @@ example : (∀ x, r → p x) ↔ (r → ∀ x, p x) := by
   · intro h hr x; exact h x hr
   · intro h x hr; exact h hr x
 
+end
 
 -- 3.
