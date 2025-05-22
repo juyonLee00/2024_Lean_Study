@@ -31,7 +31,12 @@ example : (∀ x, p x) ↔ ¬ (∃ x, ¬ p x) :=
     (fun h x =>
       byContradiction (fun hnp => h ⟨x, hnp⟩))
 
-example : (∃ x, p x) ↔ ¬ (∀ x, ¬ p x) := sorry
+example : (∃ x, p x) ↔ ¬ (∀ x, ¬ p x) :=
+  Iff.intro
+    (fun ⟨x, px⟩ h => h x px)
+    (fun h =>
+      byContradiction
+        (fun h' => h (fun x px => h' ⟨x, px⟩)))
 
 example : (¬ ∃ x, p x) ↔ (∀ x, ¬ p x) :=
   Iff.intro
@@ -58,4 +63,7 @@ example (a : α) : (∃ x, p x → r) ↔ (∀ x, p x) → r :=
           let contra := fun x => byContradiction (fun hpx => h' ⟨x, fun _ => absurd ‹_› hpx⟩)
           hnp contra)))
 
-example (a : α) : (∃ x, r → p x) ↔ (r → ∃ x, p x) := sorry
+example (a : α) : (∃ x, r → p x) ↔ (r → ∃ x, p x) :=
+  Iff.intro
+    (fun ⟨x, hx⟩ hr => ⟨x, hx hr⟩)
+    (fun h => ⟨a, fun hr => (h hr).2⟩)
