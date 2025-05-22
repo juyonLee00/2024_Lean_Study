@@ -21,10 +21,25 @@ example : (p ∨ q) ∨ r ↔ p ∨ (q ∨ r) := by
 
 -- distributivity
 example : p ∧ (q ∨ r) ↔ (p ∧ q) ∨ (p ∧ r) := by
-  simp -- simp made no progress
+  apply Iff.intro
+  · rintro ⟨hp, (hq | hr)⟩
+    · exact Or.inl ⟨hp, hq⟩
+    · exact Or.inr ⟨hp, hr⟩
+  · rintro (⟨hp, hq⟩ | ⟨hp, hr⟩)
+    · exact ⟨hp, Or.inl hq⟩
+    · exact ⟨hp, Or.inr hr⟩
 
 example : p ∨ (q ∧ r) ↔ (p ∨ q) ∧ (p ∨ r) := by
-  simp -- simp made no progress
+  constructor
+  · intro h
+    match h with
+    | Or.inl hp => exact ⟨Or.inl hp, Or.inl hp⟩
+    | Or.inr ⟨hq, hr⟩ => exact ⟨Or.inr hq, Or.inr hr⟩
+  · intro ⟨hpq, hpr⟩
+    match hpq, hpr with
+    | Or.inl hp, _ => exact Or.inl hp
+    | _, Or.inl hp => exact Or.inl hp
+    | Or.inr hq, Or.inr hr => exact Or.inr ⟨hq, hr⟩
 
 
 -- other properties
