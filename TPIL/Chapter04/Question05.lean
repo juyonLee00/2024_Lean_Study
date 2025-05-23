@@ -66,4 +66,7 @@ example (a : α) : (∃ x, p x → r) ↔ (∀ x, p x) → r :=
 example (a : α) : (∃ x, r → p x) ↔ (r → ∃ x, p x) :=
   Iff.intro
     (fun ⟨x, hx⟩ hr => ⟨x, hx hr⟩)
-    (fun h => ⟨a, fun hr => (h hr).2⟩)
+    (fun h =>
+      byCases
+        (fun hr : r => sorry)
+        (fun hnr : ¬r => sorry))
