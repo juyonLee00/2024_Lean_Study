@@ -68,5 +68,8 @@ example (a : α) : (∃ x, r → p x) ↔ (r → ∃ x, p x) :=
     (fun ⟨x, hx⟩ hr => ⟨x, hx hr⟩)
     (fun h =>
       byCases
-        (fun hr : r => sorry)
-        (fun hnr : ¬r => sorry))
+        (fun hr : r =>
+          let ⟨x, hx⟩ := h hr
+          ⟨x, fun _ => hx⟩)
+        (fun hnr : ¬r =>
+          ⟨a, fun hr => absurd hr hnr⟩))
