@@ -40,3 +40,4 @@ import TPIL.Chapter04.Question05
 import TPIL.Chapter05.«Question01-03»
 import TPIL.Chapter05.«Question01-04»
 import TPIL.Chapter05.Question02
+import TPIL.Chapter06.exam02
