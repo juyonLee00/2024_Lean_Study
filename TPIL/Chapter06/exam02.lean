@@ -80,11 +80,7 @@ theorem Paradox.drinker (someone : Pub) :
     (Classical.em (∀ y : Pub, IsDrinking y)).elim
       (fun hall => Or.inr hall)
       (fun hnot => Or.inl ((not_forall).mp hnot))
-  exact
-    (Drinker.exists_or_right
-      (α := Pub)
-      (p := fun x => ¬ IsDrinking x)
-      (b := ∀ y : Pub, IsDrinking y)
-      someone).mpr h
+  rw [exists_or_right someone]
+  assumption
 
 end
