@@ -4,7 +4,6 @@ import TPIL.Chapter02.Question17
 import TPIL.Chapter02.«Question19-20»
 import TPIL.Chapter02.«Question22-25»
 import TPIL.Chapter02.«Question34-38»
-<<<<<<< HEAD
 import TPIL.Chapter03.Question.Question01
 import TPIL.Chapter03.Question.Question02
 import TPIL.Chapter03.Question.Question03
@@ -42,7 +41,6 @@ import TPIL.Chapter05.«Question01-03»
 import TPIL.Chapter05.«Question01-04»
 import TPIL.Chapter05.Question02
 import TPIL.Chapter06.exam02
-=======
 import TPIL.Chapter03.«Exercise01-03»
 import TPIL.Chapter03.«Question03-08»
 import TPIL.Chapter03.«Question10-14»
@@ -57,4 +55,3 @@ import TPIL.Chapter05.Exercise02
 import TPIL.Chapter07.«Question02-06»
 import TPIL.Exam.Exam01
 import TPIL.Exam.Exam02
->>>>>>> d2fbe3814ccba0e8ecd53eb4ce81771b3c5bd23a
