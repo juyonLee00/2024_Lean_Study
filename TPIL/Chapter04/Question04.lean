@@ -1,18 +1,18 @@
-def even (n : Nat) : Prop := ∃ k, n = 2 * k
+def solve_even (n : Nat) : Prop := ∃ k, n = 2 * k
 
-def prime (n : Nat) : Prop := 1 < n ∧ ∀ m : Nat, m ∣ n → m = 1 ∨ m = n
+def solve_prime (n : Nat) : Prop := 1 < n ∧ ∀ m : Nat, m ∣ n → m = 1 ∨ m = n
 
-def infinitely_many_primes : Prop := ∀ n : Nat, ∃ p : Nat, prime p ∧ p > n
+def solve_infinitely_many_primes : Prop := ∀ n : Nat, ∃ p : Nat, solve_prime p ∧ p > n
 
-def Fermat_prime (n : Nat) : Prop := ∃ k : Nat, n = 2 ^ (2 ^ k) + 1 ∧ prime n
+def solve_Fermat_prime (n : Nat) : Prop := ∃ k : Nat, n = 2 ^ (2 ^ k) + 1 ∧ solve_prime n
 
-def infinitely_many_Fermat_primes : Prop := ∀ n : Nat, ∃ p : Nat, Fermat_prime p ∧ p > n
+def solve_infinitely_many_Fermat_primes : Prop := ∀ n : Nat, ∃ p : Nat, solve_Fermat_prime p ∧ p > n
 
-def goldbach_conjecture : Prop := ∀ n : Nat, even n ∧ 2 < n → ∃ a b : Nat, prime a ∧ prime b ∧ n = a + b
+def solve_goldbach_conjecture : Prop := ∀ n : Nat, solve_even n ∧ 2 < n → ∃ a b : Nat, solve_prime a ∧ solve_prime b ∧ n = a + b
 
-def Goldbach's_weak_conjecture : Prop := ∀ n : Nat, n > 5 ∧ ¬ even n → ∃ a b c : Nat, prime a ∧ prime b ∧ prime c ∧ n = a + b + c
+def solve_Goldbach's_weak_conjecture : Prop := ∀ n : Nat, n > 5 ∧ ¬ solve_even n → ∃ a b c : Nat, solve_prime a ∧ solve_prime b ∧ solve_prime c ∧ n = a + b + c
 
-def Fermat's_last_theorem_pos : Prop :=
+def solve_Fermat's_last_theorem_pos : Prop :=
   ∀ (n x y z : Nat),
     n ≥ 3 →
     1 ≤ x →
