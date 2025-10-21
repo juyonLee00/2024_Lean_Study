@@ -31,13 +31,13 @@ universe u
 
 variable {α : Sort u}
 
-def p (x : α) : Prop := ∀ (q : α → Prop), ¬q x
+def p0 (x : α) : Prop := ∀ (q : α → Prop), ¬q x
 
-theorem forall_not_p (x : α) : ¬p x :=
-  fun (hp : p x) ↦ show False from hp p hp
+theorem forall_not_p (x : α) : ¬p0 x :=
+  fun (hp : p0 x) ↦ show False from hp p0 hp
 
 -- alternative proof of theorem `forall_not_p`
-example (x : α) : ¬p x :=
-  fun (hp : p x) ↦ hp (fun _ ↦ True) True.intro
+example (x : α) : ¬p0 x :=
+  fun (hp : p0 x) ↦ hp (fun _ ↦ True) True.intro
 
 end Question01
