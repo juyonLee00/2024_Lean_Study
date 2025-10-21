@@ -41,3 +41,15 @@ import TPIL.Chapter05.«Question01-03»
 import TPIL.Chapter05.«Question01-04»
 import TPIL.Chapter05.Question02
 import TPIL.Chapter06.exam02
+import TPIL.Chapter03.«Exercise01-03»
+import TPIL.Chapter03.«Question03-08»
+import TPIL.Chapter03.«Question10-14»
+import TPIL.Chapter04.«Exercise01-05»
+import TPIL.Chapter04.PredicateAndRelation
+import TPIL.Chapter04.Quantifier
+import TPIL.Chapter04.Question01
+import TPIL.Chapter04.«Question04-05»
+import TPIL.Chapter05.«Exercise01Chapter03»
+import TPIL.Chapter05.«Exercise01Chapter04»
+import TPIL.Chapter05.Exercise02
+import TPIL.Chapter07.«Question02-06»
