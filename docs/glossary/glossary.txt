@@ -169,3 +169,38 @@ law of excluded middle	배중률
 double-negation elimination	이중 부정 제거
 principle	원리
 derive	도출하다
+predicate logic	술어 논리
+quantifier	정량어
+quantifier	양화사
+universal quantifier	보편 정량어
+meaning	뜻
+unary predicate	단항 술어
+notation	표기법
+universal generalization	보편 일반화
+universal instantiation	보편 예시
+universal instantiation	보편 예화
+existential quantifier	존재 정량어
+introduction	도입
+existential introduction	존재 도입
+elimination	제거
+existential elimination	존재 제거
+predicative	서술적
+impredicative	비서술적
+equivalence relation	동치 관계
+equality	같음
+equality	상등
+less-than-or-equal-to	작거나 같음
+recursor	재귀자
+namespace	이름 공간
+boolean	불
+operation	연산
+identity	항등식
+identity	항진 명제
+verify	검증하다
+notion	개념
+composition	합성
+partial function	부분 함수
+show	보이다
+subtype	부분 유형
+odd number	홀수
+inhabited	거주자가 있는
