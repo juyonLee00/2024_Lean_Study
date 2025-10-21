@@ -44,6 +44,8 @@ complete the proof of the theorem `Paradox.spearShield`.
 -/
 
 /-- A class for formalizing the drinker paradox. -/
+
+
 class Drinker (Pub : Type) where
   IsDrinking : Pub → Prop
 
