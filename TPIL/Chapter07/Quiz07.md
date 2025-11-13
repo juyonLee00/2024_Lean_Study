@@ -129,6 +129,7 @@ def pid (α : Type) : PFun α α :=
 
 theorem comp_id {α β} (f : PFun α β) : comp (pid β) f = f :=
   funext (fun x =>
+    show (f x).bind (pid β) = f x from
     match f x with
     | none   => rfl
     | some b => rfl)
@@ -138,17 +139,16 @@ theorem id_comp {α β} (g : PFun α β) : comp g (pid α) = g :=
 
 theorem comp_assoc {α β γ δ}
   (h : PFun γ δ) (g : PFun β γ) (f : PFun α β) :
-  comp h (comp g f) = comp (fun b => h ∘ (g b)) f := by
-  apply funext
-  intro x
-  cases hfx : f x with
-  | none      => rfl
-  | some b    => rfl
+  comp h (comp g f) = comp (comp h g) f := by
+  funext x
+  unfold comp
+  cases f x with
+  | none   => rfl
+  | some b => rfl
 
 end PFun
 
 end Question04
-
 ```
 
 ## 문제 5
@@ -157,6 +157,9 @@ end Question04
 
 ```
 namespace Question05
+
+example : Inhabited Bool := sorry
+example : Inhabited Nat := sorry
 
 instance instInhabitedProd {α β} [Inhabited α] [Inhabited β] : Inhabited (α × β) :=
   ⟨(default, default)⟩
