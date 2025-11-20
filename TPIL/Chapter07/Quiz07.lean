@@ -48,8 +48,8 @@ end Question04
 
 namespace Question05
 
-example : Inhabited Bool := sorry
-example : Inhabited Nat := sorry
+example : Inhabited Bool := Inhabited.mk true
+example : Inhabited Nat := ⟨0⟩
 
 instance instInhabitedProd {α β} [Inhabited α] [Inhabited β] : Inhabited (α × β) :=
   ⟨(default, default)⟩
@@ -68,12 +68,14 @@ end Question05
 
 namespace Question06
 
-def OddNat : Type := { n : Nat }
+def IsOdd (n : Nat) : Prop := ∃ k, n = 2 * k + 1
+
+def OddNat : Type := { n : Nat // IsOdd n}
 
 namespace OddNat
 
-def val (x : OddNat) : Nat := x.val
-def one : OddNat := ⟨1, by exact Nat.odd_1⟩
+def val (x : OddNat) : Nat := x.1
+def one : OddNat := ⟨1, ⟨0, rfl⟩⟩
 
 end OddNat
 
