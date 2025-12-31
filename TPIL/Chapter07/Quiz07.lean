@@ -19,12 +19,25 @@ def comp {α β γ : Type} (g : PFun β γ) (f : PFun α β) : PFun α γ :=
 def pid (α : Type) : PFun α α :=
   fun x => some x
 
+/-!
+comp_id : 전략모드
 theorem comp_id {α β} (f : PFun α β) : comp (pid β) f = f :=
   funext (fun x =>
     show (f x).bind (pid β) = f x from
+
     match f x with
     | none   => rfl
     | some b => rfl)
+    -/
+
+theorem comp_id {α β} (f : PFun α β) : comp (pid β) f = f := by
+  funext x
+  dsimp [comp, pid]
+
+  cases f x with
+  | none => rfl
+  | some b => rfl
+
 
 theorem id_comp {α β} (g : PFun α β) : comp g (pid α) = g :=
   funext (fun x => rfl)
