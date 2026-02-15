@@ -32,24 +32,24 @@ it's the type of vectors with two days of the week. -/
 def DayOrEnd (d : DayOfWeek) : Type :=
   match d with
   | sunday    => Vector DayOfWeek 2
-  | monday    => sorry
-  | tuesday   => sorry
-  | wednesday => sorry
-  | thursday  => sorry
-  | friday    => sorry
-  | saturday  => sorry
+  | monday    => Vector DayOfWeek 5
+  | tuesday   => Vector DayOfWeek 5
+  | wednesday => Vector DayOfWeek 5
+  | thursday  => Vector DayOfWeek 5
+  | friday    => Vector DayOfWeek 5
+  | saturday  => Vector DayOfWeek 2
 
 /-- If `d` is a weekday, `listDayOrEnd d` is the vector with weekdays; otherwise, it's the vector
 with the days in the weekend. -/
 def listDayOrEnd (d : DayOfWeek) : DayOrEnd d :=
   match d with
   | sunday    => #v[sunday, saturday]
-  | monday    => sorry
-  | tuesday   => sorry
-  | wednesday => sorry
-  | thursday  => sorry
-  | friday    => sorry
-  | saturday  => sorry
+  | monday    => #v[monday, tuesday, wednesday, thursday, friday]
+  | tuesday   => #v[monday, tuesday, wednesday, thursday, friday]
+  | wednesday => #v[monday, tuesday, wednesday, thursday, friday]
+  | thursday  => #v[monday, tuesday, wednesday, thursday, friday]
+  | friday    => #v[monday, tuesday, wednesday, thursday, friday]
+  | saturday  => #v[sunday, saturday]
 
 end DayOfWeek
 
@@ -65,23 +65,35 @@ namespace Bool
 
 /-- Boolean “or”, also known as disjunction. -/
 def or (a b : Bool) : Bool :=
-  sorry
+  match a with
+  | true  => true
+  | false => b
 
 /-- Boolean “and”, also known as conjunction. -/
 def and (a b : Bool) : Bool :=
-  sorry
+  match a with
+  | true  => b
+  | false => false
 
 /-- Boolean negation, also known as Boolean complement. -/
 def not (a : Bool) : Bool :=
-  sorry
+  match a with
+  | true  => false
+  | false => true
 
 /-- `Bool.not_not`. -/
 theorem not_involutive (a : Bool) : not (not a) = a :=
-  sorry
+  match a with
+  | true  => rfl  -- not (not true) => not (false) => true (일치!)
+  | false => rfl  -- not (not false) => not (true) => false (일치!)
 
 /-- `Bool.and_comm`. -/
 theorem and_commutative (a b : Bool) : and a b = and b a :=
-  sorry
+  match a, b with
+  | true,  true  => rfl
+  | true,  false => rfl
+  | false, true  => rfl
+  | false, false => rfl
 
 end Bool
 
@@ -95,7 +107,9 @@ namespace Question04
 
 def Function.partComp {α : Type u} {β : Type v} {γ : Type w} (f : β → Option γ) (g : α → Option β)
     (x : α) : Option γ :=
-  sorry
+  match g x with
+  | none   => none
+  | some b => f b
 
 end Question04
 
@@ -105,18 +119,18 @@ end Question04
 
 namespace Question05
 
-example : Inhabited Bool := sorry
-example : Inhabited Nat := sorry
+example : Inhabited Bool := ⟨true⟩
+example : Inhabited Nat := ⟨0⟩
 
 section
 
 variable {α : Type u} {β : Type v}
 
 example {inst1 : Inhabited α} {inst2 : Inhabited β} : Inhabited (α × β) :=
-  sorry
+  ⟨(default, default)⟩
 
 example {inst : Inhabited β} : Inhabited (α → β) :=
-  sorry
+  ⟨fun _ => default⟩
 
 end
 
@@ -130,11 +144,11 @@ namespace Question06
 
 namespace Nat
 
-def Odd : Type := sorry
+def Odd : Type := { n : Nat // ∃ k : Nat, n = 2 * k + 1}
 
-example : Odd := sorry
-example : Odd := sorry
-example : Odd := sorry
+example : Odd := ⟨1, 0, rfl⟩
+example : Odd := ⟨3, 1, rfl⟩
+example : Odd := ⟨9, 4, rfl⟩
 
 end Nat
 
@@ -146,8 +160,10 @@ end Question06
 
 namespace Question07
 
-theorem Nat.zero_add (n : Nat) : 0 + n = n :=
-  sorry
+theorem Nat.zero_add (n : Nat) : 0 + n = n := by
+  induction n with
+  | zero => rfl
+  | succ k ih => simp [ih]
 
 end Question07
 
@@ -159,11 +175,15 @@ namespace Question08
 
 namespace List
 
-theorem append_nil (as : List α) : as ++ [] = as :=
-  sorry
+theorem append_nil (as : List α) : as ++ [] = as := by
+  induction as with
+  | nil => rfl
+  | cons a as' ih => simp [ih]
 
 theorem append_assoc (as bs cs : List α) : (as ++ bs) ++ cs = as ++ (bs ++ cs) := by
-  sorry
+  induction as with
+  | nil => rfl
+  | cons a as' ih => simp [ih]
 
 end List
 
@@ -191,7 +211,10 @@ export BinaryTree (leaf node)
 o   o
 ```
 -/
-def q09 : BinaryTree := sorry
+def q09 : BinaryTree :=
+  node
+    (node leaf leaf)
+    leaf
 
 end Question09
 
