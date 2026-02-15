@@ -56,6 +56,4 @@ import TPIL.Chapter07.Injective
 import TPIL.Chapter07.«Question02-13»
 import TPIL.Chapter07.«Question15-16»
 import TPIL.Chapter08.StructuralRecursion
-import TPIL.Exam.Exam01
-import TPIL.Exam.Exam02
 import TPIL.Chapter07.Quiz07
