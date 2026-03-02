@@ -43,13 +43,13 @@ def DayOrEnd (d : DayOfWeek) : Type :=
 with the days in the weekend. -/
 def listDayOrEnd (d : DayOfWeek) : DayOrEnd d :=
   match d with
-  | sunday    => ⟨[DayOfWeek.sunday, DayOfWeek.saturday], by simp⟩
-  | monday    => ⟨[DayOfWeek.monday, DayOfWeek.tuesday, DayOfWeek.wednesday, DayOfWeek.thursday, DayOfWeek.friday], by simp⟩
-  | tuesday   => ⟨[DayOfWeek.monday, DayOfWeek.tuesday, DayOfWeek.wednesday, DayOfWeek.thursday, DayOfWeek.friday], by simp⟩
-  | wednesday => ⟨[DayOfWeek.monday, DayOfWeek.tuesday, DayOfWeek.wednesday, DayOfWeek.thursday, DayOfWeek.friday], by simp⟩
-  | thursday  => ⟨[DayOfWeek.monday, DayOfWeek.tuesday, DayOfWeek.wednesday, DayOfWeek.thursday, DayOfWeek.friday], by simp⟩
-  | friday    => ⟨[DayOfWeek.monday, DayOfWeek.tuesday, DayOfWeek.wednesday, DayOfWeek.thursday, DayOfWeek.friday], by simp⟩
-  | saturday  => ⟨[DayOfWeek.sunday, DayOfWeek.saturday], by simp⟩
+  | sunday    => #v[sunday, saturday]
+  | monday    => #v[monday, tuesday, wednesday, thursday, friday]
+  | tuesday   => #v[monday, tuesday, wednesday, thursday, friday]
+  | wednesday => #v[monday, tuesday, wednesday, thursday, friday]
+  | thursday  => #v[monday, tuesday, wednesday, thursday, friday]
+  | friday    => #v[monday, tuesday, wednesday, thursday, friday]
+  | saturday  => #v[sunday, saturday]
 
 end DayOfWeek
 
