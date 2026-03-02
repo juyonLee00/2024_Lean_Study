@@ -26,10 +26,10 @@ mutual
 end
 
 theorem odd_one : Odd 1 :=
-  sorry
+  Odd.odd_succ 0 Even.even_zero
 
 theorem even_two : Even 2 :=
-  sorry
+  Even.even_succ 1 (Odd.odd_succ 0 Even.even_zero)
 
 end Nat
 
@@ -55,6 +55,15 @@ art:
 ```
 -/
 def q16 : FinTree Nat :=
-  sorry
+  FinTree.mk 0 [
+    FinTree.mk 1 [
+      FinTree.mk 4 [],
+      FinTree.mk 5 []
+    ],
+    FinTree.mk 2 [],
+    FinTree.mk 3 [
+      FinTree.mk 6 []
+    ]
+  ]
 
 end Question16
