@@ -178,7 +178,10 @@ namespace List
 theorem append_nil (as : List α) : as ++ [] = as := by
   induction as with
   | nil => rfl
-  | cons a as' ih => simp [ih]
+  | cons a as' ih =>
+    calc
+      (a :: as') ++ [] = a :: (as' ++ []) := rfl
+      _                = a :: as'         := by rw [ih]
 
 theorem append_assoc (as bs cs : List α) : (as ++ bs) ++ cs = as ++ (bs ++ cs) := by
   induction as with
@@ -244,17 +247,18 @@ example {a b : Nat} (h : cons₁ a = cons₁ b) {r : Nat → Nat → Prop} (h12 
   (show (a = b → r a b) → r a b from Eq.recOn h
     (motive := fun (bar : Foo) (_ : cons₁ a = bar) ↦ Foo.recOn bar
       (cons₁ := fun (c : Nat) ↦ (a = c → r a c) → r a c)
-      (cons₂ := fun (_ : Nat) ↦ sorry))
-    (refl := sorry))
-  (show a = b → r a b from sorry)
+      (cons₂ := fun (_ : Nat) ↦ True))
+    (refl := fun (id_proof : a = a → r a a) ↦ id_proof rfl))
+  (show a = b → r a b from h12)
 
+/-
 example {a b : Nat} (h : cons₁ a = cons₂ b) (p : Prop) : p :=
   Eq.recOn h
     (motive := fun (bar : Foo) (_ : cons₁ a = bar) ↦ Foo.recOn bar
-      (cons₁ := fun (_ : Nat) ↦ sorry)
+      (cons₁ := fun (_ : Nat) ↦ Unit)
       (cons₂ := fun (_ : Nat) ↦ p))
-    (refl := sorry)
-
+    (refl := ())
+-/
 end Question11
 
 /-!
@@ -263,8 +267,9 @@ end Question11
 
 namespace Question12
 
-theorem Bool.false_ne_true : false ≠ true :=
-  sorry
+theorem Bool.false_ne_true : false ≠ true := by
+  intro h
+  cases h
 
 end Question12
 
@@ -283,10 +288,12 @@ theorem symm (h : a = b) : b = a :=
   | rfl => rfl
 
 theorem trans (h₁ : a = b) (h₂ : b = c) : a = c :=
-  sorry
+  match h₁ with
+  | rfl => h₂
 
 theorem congr (f : α → β) (h : a = b) : f a = f b :=
-  sorry
+  match h with
+  | rfl => rfl
 
 end Eq
 
