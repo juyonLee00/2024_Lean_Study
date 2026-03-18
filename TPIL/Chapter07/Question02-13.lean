@@ -160,10 +160,8 @@ end Question06
 
 namespace Question07
 
-theorem Nat.zero_add (n : Nat) : 0 + n = n := by
-  induction n with
-  | zero => rfl
-  | succ k ih => simp [ih]
+theorem Nat.zero_add (n : Nat) : 0 + n = n :=
+  Nat.recOn n rfl (fun k ih => by rw [Nat.succ_eq_add_one, ← Nat.add_assoc, ih])
 
 end Question07
 
@@ -187,7 +185,6 @@ theorem append_assoc (as bs cs : List α) : (as ++ bs) ++ cs = as ++ (bs ++ cs) 
   induction as with
   | nil => rfl
   | cons a as' ih => simp [ih]
-
 end List
 
 end Question08
