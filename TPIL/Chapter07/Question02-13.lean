@@ -224,13 +224,30 @@ end Question09
 
 namespace Question10
 
+-- 새 타입 정의
 inductive Foo : Type where
   | cons₁ : Nat → Foo
   | cons₂ : Nat → Foo
 
+-- Foo 네임스페이스 거치지 않고 직접 사용 가능.
 export Foo (cons₁ cons₂)
 
+--참임을 증명 (동일한 생성자로 만들어진 두 값이 같으면 안쪽 a,b도 같다는 것 증명)
+theorem prop_a : ∀ {a b : Nat}, cons₁ a = cons₁ b → a = b := by
+  intro a b h
+  injection h with h_eq
+
+-- 서로 다른 cons1, cons2로 만들어진 값을 같게 하는 a,b가 1개는 존재한다는 가정.
+theorem prop_b_is_false : ¬(∃ (a b : Nat), cons₁ a = cons₂ b) := by
+  intro ⟨a, b, h⟩
+  contradiction
+
+#print prop_a
+#print prop_b_is_false
+
 end Question10
+
+
 
 /-!
 ## Question 11
@@ -240,6 +257,7 @@ namespace Question11
 
 open Question10
 
+--cons₁ a = cons₁ b일 때 a=b를 추출해 r a b 증명. a=b일 때 a에 대해 성립하는 성질은 b에 대해서도 성립.
 example {a b : Nat} (h : cons₁ a = cons₁ b) {r : Nat → Nat → Prop} (h12 : a = b → r a b) : r a b :=
   (show (a = b → r a b) → r a b from Eq.recOn h
     (motive := fun (bar : Foo) (_ : cons₁ a = bar) ↦ Foo.recOn bar
@@ -248,14 +266,16 @@ example {a b : Nat} (h : cons₁ a = cons₁ b) {r : Nat → Nat → Prop} (h12 
     (refl := fun (id_proof : a = a → r a a) ↦ id_proof rfl))
   (show a = b → r a b from h12)
 
-/-
+--cons₁ a = cons₁ b (서로 다른 생성자가 같다는 모순 이용)
 example {a b : Nat} (h : cons₁ a = cons₂ b) (p : Prop) : p :=
   Eq.recOn h
     (motive := fun (bar : Foo) (_ : cons₁ a = bar) ↦ Foo.recOn bar
-      (cons₁ := fun (_ : Nat) ↦ Unit)
+      (cons₁ := fun (_ : Nat) ↦ True)
       (cons₂ := fun (_ : Nat) ↦ p))
-    (refl := ())
--/
+    (refl := True.intro)
+
+#print Eq.recOn
+
 end Question11
 
 /-!
