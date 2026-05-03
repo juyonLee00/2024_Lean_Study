@@ -58,7 +58,32 @@ def append {α : Type u} (xs ys : List α) : List α :=
 
 def reverse {α : Type u} (xs : List α) : List α :=
   match xs with
-  | nil => nil
-  | cons head tail => append (reverse tail) (cons head nil)
+  | List.nil => List.nil
+  | List.cons head tail => append (reverse tail) (List.cons head List.nil)
+
+
+theorem length_append {α : Type} (xs ys : List α) : length (xs ++ ys) = length xs + length ys := by
+  induction xs with
+  | nil =>
+  simp [append, length]
+  | cons x xs' ih =>
+    calc length ((x :: xs') ++ ys)
+      _ = length (x :: (xs' ++ ys)) := rfl
+      _ = length (xs' ++ ys) + 1    := rfl
+      _ = (length xs' + length ys) + 1 := by rw [ih]
+      _ = (length xs' + 1) + length ys := by rw [Nat.add_right_comm]
+      _ = length (x :: xs') + length ys := rfl
+
+theorem length_reverse {α : Type} (xs : List α) : length (reverse xs) = length xs := by
+  induction xs with
+  | nil => rfl
+  | cons x xs' ih =>
+    calc length (reverse (x :: xs'))
+      _ = length (append (reverse xs') [x]) := rfl
+      _ = length (reverse xs') + length [x] := sorry --by rw [length_append]
+      _ = length xs' + length [x]           := by rw [ih]
+      _ = length (x :: xs')                 := rfl
+
+theorem reverse_reverse {α : Type} (xs : List α) : reverse (reverse xs) = xs := sorry
 
 end Hidden
