@@ -27,14 +27,35 @@ def eval (assign : Nat -> Bool) (p : Formular) : Bool :=
 -- 식 내부 구성 요소 개수 판단
 def complexity (p : Formular) : Nat :=
   match p with
-  | Formular.truth => 1
-  | Formular.falsity => 1
-  | Formular.atom n => 1
+  | Formular.truth => 0
+  | Formular.falsity => 0
+  | Formular.atom n => 0
   | Formular.neg p => Nat.succ (complexity p)
   | Formular.andF p q => Nat.succ (complexity p + complexity q)
   | Formular.orF p q => Nat.succ (complexity p + complexity q)
   | Formular.implF p q => Nat.succ (complexity p + complexity q)
   | Formular.iffF p q => Nat.succ (complexity p + complexity q)
+
+
+def Formular.subst (n : Nat) (B A : Formular) : Formular :=
+  match A with
+  | truth => Formular.truth
+  | falsity => Formular.falsity
+  | atom m =>
+      if m = n then B else A
+  | neg p =>
+      neg (subst n B p)
+  | andF p q =>
+      andF (subst n B p) (subst n B q)
+  | orF p q =>
+      orF (subst n B p) (subst n B q)
+  | implF p q =>
+      orF (subst n B p) (subst n B q)
+  | iffF p q =>
+      orF (subst n B p) (subst n B q)
+
+-- def pqr : Formular := Formular.andF (Formular.andF p q) r
+
 
 
 end Hidden
