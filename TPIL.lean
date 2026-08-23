@@ -52,5 +52,12 @@ import TPIL.Chapter04.«Question04-05»
 import TPIL.Chapter05.«Exercise01Chapter03»
 import TPIL.Chapter05.«Exercise01Chapter04»
 import TPIL.Chapter05.Exercise02
+<<<<<<< HEAD
 import TPIL.Chapter07.«Question02-06»
+=======
+import TPIL.Chapter07.Injective
+import TPIL.Chapter07.«Question02-13»
+import TPIL.Chapter07.«Question15-16»
+import TPIL.Chapter08.StructuralRecursion
+>>>>>>> f1d9cdf (Fix CI / build error)
 import TPIL.Chapter07.Quiz07

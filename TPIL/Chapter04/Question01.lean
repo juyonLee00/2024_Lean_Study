@@ -13,8 +13,6 @@ fun h x =>
   Or.elim h
     (fun hp => Or.inl (hp x))
     (fun hq => Or.inr (hq x))
-<<<<<<< HEAD
-=======
 /-
 Copyright (c) 2025 Bulhwi Cha. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
@@ -43,4 +41,3 @@ example (x : α) : ¬p0 x :=
   fun (hp : p0 x) ↦ hp (fun _ ↦ True) True.intro
 
 end Question01
->>>>>>> 3d13dee (Fix chapter04 question01.lean)
