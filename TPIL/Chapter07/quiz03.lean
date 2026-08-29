@@ -1,4 +1,4 @@
-inductive Term:Type where
+inductive Term : Type where
   | const : Nat → Term -- 자연수 상수
   | var : Nat → Term -- 변수
   | plus : Term → Term → Term -- s+t 결과값
@@ -33,7 +33,6 @@ def example2 : Term :=
 def example3 : Term :=
   Term.times (Term.var 1) (Term.const 2)
 #eval eval (fun _ => 0) example3
-
 
 inductive Formula where
   | tru
