@@ -36,7 +36,6 @@ def complexity (p : Formular) : Nat :=
   | Formular.implF p q => Nat.succ (complexity p + complexity q)
   | Formular.iffF p q => Nat.succ (complexity p + complexity q)
 
-
 def Formular.subst (n : Nat) (B A : Formular) : Formular :=
   match A with
   | truth => Formular.truth
@@ -53,9 +52,5 @@ def Formular.subst (n : Nat) (B A : Formular) : Formular :=
       orF (subst n B p) (subst n B q)
   | iffF p q =>
       orF (subst n B p) (subst n B q)
-
--- def pqr : Formular := Formular.andF (Formular.andF p q) r
-
-
 
 end Hidden
