@@ -1,0 +1,161 @@
+/-!
+## Question 7
+-/
+
+namespace Question07
+
+theorem Nat.zero_add (n : Nat) : 0 + n = n :=
+  Nat.recOn n rfl (fun k ih => by rw [Nat.succ_eq_add_one, ← Nat.add_assoc, ih])
+
+end Question07
+
+/-!
+## Question 8
+-/
+
+namespace Question08
+
+namespace List
+
+theorem append_nil (as : List α) : as ++ [] = as := by
+  induction as with
+  | nil => rfl
+  | cons a as' ih =>
+    calc
+      (a :: as') ++ [] = a :: (as' ++ []) := rfl
+      _                = a :: as'         := by rw [ih]
+
+theorem append_assoc (as bs cs : List α) : (as ++ bs) ++ cs = as ++ (bs ++ cs) := by
+  induction as with
+  | nil => rfl
+  | cons a as' ih => simp [ih]
+end List
+
+end Question08
+
+/-!
+## Question 9
+-/
+
+namespace Question09
+
+/-- The type of binary trees. -/
+inductive BinaryTree where
+  | leaf : BinaryTree
+  | node : BinaryTree → BinaryTree → BinaryTree
+
+export BinaryTree (leaf node)
+
+/-- a binary tree corresponding to the following ASCII art:
+```
+    o
+   / \
+  o   o
+ / \
+o   o
+```
+-/
+def q09 : BinaryTree :=
+  node
+    (node leaf leaf)
+    leaf
+
+end Question09
+
+/-!
+## Question 10
+-/
+
+namespace Question10
+
+-- 새 타입 정의
+inductive Foo : Type where
+  | cons₁ : Nat → Foo
+  | cons₂ : Nat → Foo
+
+-- Foo 네임스페이스 거치지 않고 직접 사용 가능.
+export Foo (cons₁ cons₂)
+
+--참임을 증명 (동일한 생성자로 만들어진 두 값이 같으면 안쪽 a,b도 같다는 것 증명)
+theorem prop_a : ∀ {a b : Nat}, cons₁ a = cons₁ b → a = b := by
+  intro a b h
+  injection h with h_eq
+
+-- 서로 다른 cons1, cons2로 만들어진 값을 같게 하는 a,b가 1개는 존재한다는 가정.
+theorem prop_b_is_false : ¬(∃ (a b : Nat), cons₁ a = cons₂ b) := by
+  intro ⟨a, b, h⟩
+  contradiction
+
+#print prop_a
+#print prop_b_is_false
+
+end Question10
+
+
+
+/-!
+## Question 11
+-/
+
+namespace Question11
+
+open Question10
+
+--cons₁ a = cons₁ b일 때 a=b를 추출해 r a b 증명. a=b일 때 a에 대해 성립하는 성질은 b에 대해서도 성립.
+example {a b : Nat} (h : cons₁ a = cons₁ b) {r : Nat → Nat → Prop} (h12 : a = b → r a b) : r a b :=
+  (show (a = b → r a b) → r a b from Eq.recOn h
+    (motive := fun (bar : Foo) (_ : cons₁ a = bar) ↦ Foo.recOn bar
+      (cons₁ := fun (c : Nat) ↦ (a = c → r a c) → r a c)
+      (cons₂ := fun (_ : Nat) ↦ True))
+    (refl := fun (id_proof : a = a → r a a) ↦ id_proof rfl))
+  (show a = b → r a b from h12)
+
+--cons₁ a = cons₁ b (서로 다른 생성자가 같다는 모순 이용)
+example {a b : Nat} (h : cons₁ a = cons₂ b) (p : Prop) : p :=
+  Eq.recOn h
+    (motive := fun (bar : Foo) (_ : cons₁ a = bar) ↦ Foo.recOn bar
+      (cons₁ := fun (_ : Nat) ↦ True)
+      (cons₂ := fun (_ : Nat) ↦ p))
+    (refl := True.intro)
+
+#print Eq.recOn
+
+end Question11
+
+/-!
+## Question 12
+-/
+
+namespace Question12
+
+theorem Bool.false_ne_true : false ≠ true := by
+  intro h
+  cases h
+
+end Question12
+
+/-!
+## Question 13
+-/
+
+namespace Question13
+
+namespace Eq
+
+variable {α β : Type u} {a b c : α}
+
+theorem symm (h : a = b) : b = a :=
+  match h with
+  | rfl => rfl
+
+theorem trans (h₁ : a = b) (h₂ : b = c) : a = c :=
+  match h₁ with
+  | rfl => h₂
+
+theorem congr (f : α → β) (h : a = b) : f a = f b :=
+  match h with
+  | rfl => rfl
+
+end Eq
+
+end Question13

@@ -29,7 +29,7 @@ def complexity (p : Formular) : Nat :=
   match p with
   | Formular.truth => 0
   | Formular.falsity => 0
-  | Formular.atom n => 0
+  | Formular.atom _ => 0
   | Formular.neg p => Nat.succ (complexity p)
   | Formular.andF p q => Nat.succ (complexity p + complexity q)
   | Formular.orF p q => Nat.succ (complexity p + complexity q)
